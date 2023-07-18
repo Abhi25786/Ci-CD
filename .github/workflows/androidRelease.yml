@@ -10,6 +10,10 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        branch: [mukesh, main]
+
     steps: 
       - name: Check Out Code
         uses: actions/checkout@v3
@@ -19,14 +23,14 @@ jobs:
 
       - name: Build Android Release
         run: |
-          if [ "${GITHUB_REF}" = "refs/heads/mukesh" ]; then
+          if [ "${{ matrix.branch }}" = "mukesh" ]; then
             cd android && ./gradlew assembleRelease
-          elif [ "${GITHUB_REF}" = "refs/heads/main" ]; then
+          elif [ "${{ matrix.branch }}" = "main" ]; then
             # Add any main branch-specific build commands here, if necessary.
             # For example, for React Native, you might run `npx react-native run-android`.
             echo "Building from main branch"
           else
-            echo "Unsupported branch: ${GITHUB_REF}"
+            echo "Unsupported branch: ${{ matrix.branch }}"
             exit 1
           fi
 
