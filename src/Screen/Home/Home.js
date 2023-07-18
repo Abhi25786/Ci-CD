@@ -32,6 +32,7 @@ const Home = () => {
         source={imagePath.logo}
         style={styles.animatedImage(progress, leftToRightAnimation)}
       />
+      {/* title view */}
       <Animated.Text style={styles.textanimtionStyle(leftToRightAnimation)}>
         {en.WELCOME_TO_OUR_TEAM}
       </Animated.Text>
