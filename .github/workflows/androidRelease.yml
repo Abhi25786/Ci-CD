@@ -1,42 +1,31 @@
 name: react-native-android-build-apk
-
 on:
   push:
-    branches:
+     branches:
       - mukesh
       - main 
       - monika
-
 jobs:
-  build-android:
+  install-and-test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        branch: [mukesh, main, monika]
-
-    steps: 
-      - name: Check Out Code
-        uses: actions/checkout@v3
-
+    steps:
+      - uses: actions/checkout@v3
       - name: Install npm dependencies
-        run: npm install
-
+        run: |
+          npm install
+  build-android:
+    needs: install-and-test
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+      - name: Install npm dependencies
+        run: |
+          npm install
       - name: Build Android Release
         run: |
-          if [ "${{ matrix.branch }}" = "mukesh" ]; then
-            cd android && ./gradlew assembleRelease
-          elif [ "${{ matrix.branch }}" = "main" ]; then
-            # Add any main branch-specific build commands here, if necessary.
-            # For example, for React Native, you might run `npx react-native run-android`.
-            echo "Building from main branch"
-          else
-            echo "Unsupported branch: ${{ matrix.branch }}"
-            exit 1
-          fi
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v2
+          cd android && ./gradlew assembleRelease
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
