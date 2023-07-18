@@ -1,21 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, { useEffect } from 'react';
-import Home from './src/Screen/Home/Home';
-import SplashScreen from 'react-native-splash-screen';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
 const App = () => {
-  
-    // --------for splash hide
-    useEffect(() => {
-      setTimeout(() => {
-        SplashScreen.hide();
-      }, 800);
-    }, []);
-  
+  return (
+    <View>
+      <Text>App</Text>
+    </View>
+  )
+}
 
-  return <Home />;
-};
+export default App
 
-export default App;
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
