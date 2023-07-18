@@ -28,6 +28,7 @@ const Home = () => {
   }, []);
   return (
     <View style={styles.mainContainer}>
+          {/* image view */}
       <Animated.Image
         source={imagePath.logo}
         style={styles.animatedImage(progress, leftToRightAnimation)}
