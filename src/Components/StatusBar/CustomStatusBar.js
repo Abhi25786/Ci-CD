@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const CustomStatusBar = (
     {
       backgroundColor,
-      barStyle = "dark-content",
+      barStyle = "light-content",
     }
   ) => { 
      
