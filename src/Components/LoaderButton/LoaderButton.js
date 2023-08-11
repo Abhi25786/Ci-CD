@@ -1,12 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { memo } from 'react'
 import colors from '../../Styles/colors'
-import { height, moderateScale } from '../../Styles/responsiveSize'
+import { height, moderateScale, textScale } from '../../Styles/responsiveSize'
+import fontFamily from '../../Styles/fontFamily'
 
-const LoaderButton = () => {
+const LoaderButton = ({buttonViewStyle,buttonText,bottonTextStyle,  ...ButtonProps}) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Text>LoaderButton</Text>
+    <TouchableOpacity style={[styles.container,buttonViewStyle]}   {...ButtonProps}>
+      <Text style={[styles.textStyle,bottonTextStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   )
 }
@@ -19,8 +20,13 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         borderRadius: moderateScale(8),
         borderWidth: moderateScale(1),
-        backgroundColor: colors.white,
+        backgroundColor: colors.lightGreen,
         height:height/moderateScale(16),
         paddingHorizontal: moderateScale(12),
-      },
+    },
+    textStyle: {
+        fontFamily: fontFamily.muktaBold,
+        fontSize: textScale(16),
+        color:colors.white
+    }
 })

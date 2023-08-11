@@ -30,7 +30,10 @@ const Login = props => {
           placeholderTextColor={colors.white}
           mainContaineStyle={{marginBottom: moderateScale(10)}}
         />
-        <LoaderButton/>
+        <LoaderButton
+          buttonText={en.LOGIN}
+          activeOpacity={0.9}
+        />
       </KeyboardAwareScrollView>
     </WrapperContainer>
   );
@@ -38,4 +41,6 @@ const Login = props => {
 
 export default Login;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  
+});

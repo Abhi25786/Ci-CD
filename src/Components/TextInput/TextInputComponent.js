@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import {View, TextInput, Image, StyleSheet} from 'react-native';
 import colors from '../../Styles/colors';
+import fontFamily from '../../Styles/fontFamily';
 import {moderateScale} from '../../Styles/responsiveSize';
 
 const TextInputComponent = ({
@@ -8,7 +9,8 @@ const TextInputComponent = ({
   rightImageSource,
   onLeftImagePress,
     onRightImagePress,
-    mainContaineStyle,
+  mainContaineStyle,
+  textInputStyle,
   ...textInputProps
 }) => {
   return (
@@ -20,7 +22,7 @@ const TextInputComponent = ({
           onPress={onLeftImagePress}
         />
       )}
-      <TextInput style={styles.textInput} {...textInputProps}   />
+      <TextInput style={[styles.textInput,textInputStyle]} {...textInputProps}   />
       {rightImageSource && (
         <Image
           source={rightImageSource}
@@ -48,7 +50,8 @@ const styles = StyleSheet.create({
   },
   textInput: {
       color: colors.white,
-      flex:1
+    flex: 1,
+      fontFamily:fontFamily.muktaMedium
   },
 });
 

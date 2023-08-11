@@ -1,4 +1,5 @@
 export default {
     theamColor: '#101027',
-    white:'#ffff'
+    white: '#ffff',
+    lightGreen:'#4FAD84'
 }
