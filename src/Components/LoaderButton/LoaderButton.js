@@ -4,9 +4,9 @@ import colors from '../../Styles/colors'
 import { height, moderateScale, textScale } from '../../Styles/responsiveSize'
 import fontFamily from '../../Styles/fontFamily'
 
-const LoaderButton = ({buttonViewStyle,buttonText,bottonTextStyle,  ...ButtonProps}) => {
+const LoaderButton = ({buttonViewStyle,buttonText,bottonTextStyle, onPress=()=>{}, ...ButtonProps }) => {
   return (
-    <TouchableOpacity style={[styles.container,buttonViewStyle]}   {...ButtonProps}>
+    <TouchableOpacity style={[styles.container,buttonViewStyle]}   {...ButtonProps} onPress={onPress}>
       <Text style={[styles.textStyle,bottonTextStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   )
