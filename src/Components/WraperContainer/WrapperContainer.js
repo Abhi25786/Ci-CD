@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import colors from '../../Styles/colors'
-import { height, width } from '../../Styles/responsiveSize'
+import colors from '../../styles/colors'
+import { height, width } from '../../styles/responsiveSize'
 import HeaderOne from '../Headers/HeaderOne'
 import CustomStatusBar from '../StatusBar/CustomStatusBar'
 

@@ -10,10 +10,10 @@ import imagePath from '../../../constants/imagePath';
 import en from '../../../constants/lang/en';
 import navigationStrings from '../../../navigation/navigationStrings';
 import actions from '../../../redux/actions';
-import colors from '../../../Styles/colors';
-import commonStyle from '../../../Styles/commonStyle';
-import fontFamily from '../../../Styles/fontFamily';
-import {moderateScale} from '../../../Styles/responsiveSize';
+import colors from '../../../styles/colors';
+import commonStyle from '../../../styles/commonStyle';
+import fontFamily from '../../../styles/fontFamily';
+import {moderateScale} from '../../../styles/responsiveSize';
 import {showError, showSuccess} from '../../../utils/helperFunctions';
 import validator from '../../../utils/validations';
 

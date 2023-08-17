@@ -3,6 +3,7 @@ export default {
     LOGINSCREEN: 'Login',
     SIGNUPSCREEN: 'signUp',
     HOMESCREEN: 'Home',
-    ACCOUNTSCREEN:'Account'
+    ACCOUNTSCREEN: 'Account',
+    HOMESTACK:'HomeStack'
     
 }
