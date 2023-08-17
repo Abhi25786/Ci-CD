@@ -6,9 +6,9 @@ import {
   View,
 } from 'react-native';
 import React, {memo} from 'react';
-import colors from '../../styles/colors';
-import {height, moderateScale, textScale} from '../../styles/responsiveSize';
-import fontFamily from '../../styles/fontFamily';
+import colors from '../../Styles/colors';
+import {height, moderateScale, textScale} from '../../Styles/responsiveSize';
+import fontFamily from '../../Styles/fontFamily';
 
 const LoaderButton = ({
   buttonViewStyle,

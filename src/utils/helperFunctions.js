@@ -1,5 +1,5 @@
 import { showMessage } from 'react-native-flash-message';
-import { moderateScaleVertical } from '../styles/responsiveSize';
+import { moderateScaleVertical } from '../Styles/responsiveSize';
 export const showError = (message) => {
     console.log(message, 'THIS IS MESSAGE');
     showMessage({

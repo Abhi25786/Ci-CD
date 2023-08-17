@@ -11,10 +11,10 @@ import en from '../../../constants/lang/en';
 import navigationStrings from '../../../navigation/navigationStrings';
 import actions from '../../../redux/actions';
 import {userDate} from '../../../redux/actions/auth';
-import colors from '../../../styles/colors';
-import commonStyle from '../../../styles/commonStyle';
-import fontFamily from '../../../styles/fontFamily';
-import {moderateScale} from '../../../styles/responsiveSize';
+import colors from '../../../Styles/colors';
+import commonStyle from '../../../Styles/commonStyle';
+import fontFamily from '../../../Styles/fontFamily';
+import {moderateScale} from '../../../Styles/responsiveSize';
 import {showError, showSuccess} from '../../../utils/helperFunctions';
 import validator from '../../../utils/validations';
 const SignUp = ({navigation}) => {

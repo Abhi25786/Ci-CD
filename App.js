@@ -7,7 +7,7 @@ import Route from './src/navigation/Routes';
 import {userDate} from './src/redux/actions/auth';
 import {introStateUpdate} from './src/redux/actions/intro';
 import store from './src/redux/store';
-import colors from './src/styles/colors';
+import colors from './src/Styles/colors';
 import {getItem} from './src/utils/utils';
 import FlashMessage from 'react-native-flash-message';
 const App = () => {

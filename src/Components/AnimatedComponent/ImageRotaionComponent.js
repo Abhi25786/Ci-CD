@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { memo, useEffect } from 'react'
 import Animated, { Easing, interpolate, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
-import { height, width } from '../../styles/responsiveSize'
+import { height, width } from '../../Styles/responsiveSize'
 import imagePath from '../../constants/imagePath'
 
 const ImageRotaionComponent = ({ rotation = true ,imageStyle}) => {

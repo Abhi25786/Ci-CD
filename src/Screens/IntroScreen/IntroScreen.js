@@ -9,7 +9,7 @@ import imagePath from '../../constants/imagePath'
 import en from '../../constants/lang/en';
 import { useEffect } from 'react';
 import { ImageSpinAnimation } from '../../utils/AnimatedFunctions';
-import colos from '../../styles/colors';
+import colos from '../../Styles/colors';
 
 const IntroScreen = () => {
   const [imgaeData, setImageData] = useState([{ title: en.WELCOME, metaDiscription: '' }, { title: en.ABOUT_APP, metaDiscription: en.WELCOM_DISCRIPTION }])

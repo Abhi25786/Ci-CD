@@ -6,9 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import colors from '../../styles/colors';
-import fontFamily from '../../styles/fontFamily';
-import {moderateScale} from '../../styles/responsiveSize';
+import colors from '../../Styles/colors';
+import fontFamily from '../../Styles/fontFamily';
+import {moderateScale} from '../../Styles/responsiveSize';
 
 const TextInputComponent = ({
   leftImageSource,

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { memo } from 'react'
 import WrapperContainer from '../../../Components/WraperContainer/WrapperContainer'
-import colors from '../../../styles/colors'
-import { moderateScale } from '../../../styles/responsiveSize'
+import colors from '../../../Styles/colors'
+import { moderateScale } from '../../../Styles/responsiveSize'
 
 const Home = () => {
   return (

@@ -1,13 +1,13 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import colors from '../../styles/colors';
-import colos from '../../styles/colors';
+import colors from '../../Styles/colors';
+import colos from '../../Styles/colors';
 import {
   height,
   moderateScale,
   moderateScaleVertical,
   textScale,
   width,
-} from '../../styles/responsiveSize';
+} from '../../Styles/responsiveSize';
 
 export const style = StyleSheet.create({
   introMainView: {

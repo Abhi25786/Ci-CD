@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {FC, memo} from 'react';
-import {height, moderateScale} from '../../styles/responsiveSize';
+import {height, moderateScale} from '../../Styles/responsiveSize';
 import { useNavigation } from '@react-navigation/native';
 
 type headerPropes = {
