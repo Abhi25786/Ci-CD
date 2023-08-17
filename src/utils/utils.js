@@ -1,20 +1,113 @@
-import { MMKV } from "react-native-mmkv";
+import axios from 'axios';
+import { MMKV } from 'react-native-mmkv';
+
 const storage = new MMKV();
 export const setItem = (key, value) => {
-    storage.set(key, JSON.stringify(value));
-    return Promise.resolve(true);
-}
+  storage.set(key, JSON.stringify(value));
+  return Promise.resolve(true);
+};
 export const getItem = key => {
-    const value = storage.getString(key)
-    if (value == undefined) {
-        return Promise.resolve(value)
-    } else {
-        return Promise.resolve(JSON.parse(value));
-        
+  const value = storage.getString(key);
+  if (value == undefined) {
+    return Promise.resolve(value);
+  } else {
+    return Promise.resolve(JSON.parse(value));
+  }
+};
+export const removeItem = key => {
+  storage.delete(key);
+  return Promise.resolve();
+};
+
+export async function getHeaders() {
+  let userData = await getItem('userData');
+  if (userData) {
+    userData = JSON.parse(userData);
+    return {
+      authorization: `${userData.token}`,
+    };
+  }
+  return {};
+}
+
+export async function apiReq(
+  endPoint,
+  data,
+  method,
+  headers,
+  requestOptions = {},
+) {
+  console.log(endPoint, 'endPoint');
+
+  const source = axios.CancelToken.source();
+
+  return new Promise(async (res, rej) => {
+    const getTokenHeader = await getHeaders();
+
+    headers = {
+      ...getTokenHeader,
+      ...headers,
+      // cancelToken:source.token
+    };
+
+    console.log(headers);
+
+    if (method === 'get' || method === 'delete') {
+      data = {
+        ...requestOptions,
+        ...data,
+        headers,
+      };
     }
 
+    console.log('header sending--->', headers);
+    console.log('data sending ---->', data);
+    //
+    axios[method](endPoint, data, { headers })
+      .then((result) => {
+        console.log("core result", result)
+        const { data } = result;
+
+        if (data.status === false) {
+          return rej(data);
+        }
+
+        return res(data);
+      })
+      .catch((error) => {
+        console.log(error?.response, '<===error in utils');
+        if (error && error?.response && error?.response.status === 401) {
+          // sessionHandler(error.response.data.message);
+          return rej(error);
+        }
+        if (error && error.response && error.response.data) {
+          if (!error.response.data.error) {
+            return rej({
+              ...error.response.data,
+              error: error.response.data.error || 'Network Error',
+            });
+          }
+          return rej(error.response.data);
+        } else {
+          return rej({ error: 'Network Error', message: 'Network Error' });
+        }
+        return rej(error);
+      });
+  });
 }
-export const removeItem = key => {
-    storage.delete(key);
-    return Promise.resolve()
-}
+export function apiPost(endPoint, data, headers = {}) {
+  console.log(endPoint, data, headers = {},'endPoint, data, headers = {}');
+    return apiReq(endPoint, data, 'post', headers);
+  }
+  
+  export function apiDelete(endPoint, data, headers = {}) {
+    return apiReq(endPoint, data, 'delete', headers);
+  }
+  
+  export function apiGet(endPoint, data, headers = {}, requestOptions) {
+    return apiReq(endPoint, data, 'get', headers, requestOptions);
+  }
+  
+  export function apiPut(endPoint, data, headers = {}) {
+    return apiReq(endPoint, data, 'put', headers);
+  }

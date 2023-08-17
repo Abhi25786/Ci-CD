@@ -1,31 +1,34 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ImageRotaionComponent from '../../../Components/AnimatedComponent/ImageRotaionComponent';
 import LoaderButton from '../../../Components/LoaderButton/LoaderButton';
 import TextInputComponent from '../../../Components/TextInput/TextInputComponent';
 import WrapperContainer from '../../../Components/WraperContainer/WrapperContainer';
+import imagePath from '../../../constants/imagePath';
 import en from '../../../constants/lang/en';
 import navigationStrings from '../../../navigation/navigationStrings';
-import {userDate} from '../../../redux/actions/auth';
+import actions from '../../../redux/actions';
 import colors from '../../../Styles/colors';
 import commonStyle from '../../../Styles/commonStyle';
 import fontFamily from '../../../Styles/fontFamily';
 import {moderateScale} from '../../../Styles/responsiveSize';
-import { showError } from '../../../utils/helperFunctions';
+import {showError, showSuccess} from '../../../utils/helperFunctions';
 import validator from '../../../utils/validations';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoader, setIsLoader] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const moveToNextSxreen = (screenName, data) => {
     navigation.navigate(screenName, {data: data});
   };
 
   const isValidData = () => {
-    const error = validator({ email, password });
-    console.log(error,'errorerror');
+    const error = validator({email, password});
+    console.log(error, 'errorerror');
     if (error) {
       showError(error);
       return;
@@ -33,17 +36,36 @@ const Login = ({navigation}) => {
     return true;
   };
 
-  const _login = () => {
+  const _login = async () => {
     const checkValid = isValidData();
     if (!checkValid) {
       return;
     }
-    const data = {
+    setIsLoader(true);
+    let data = {
       email: email,
       password: password,
-      access_token: 'sdcasdvcasdavcdvfyvsvdvi',
     };
-    userDate(data);
+
+    await actions
+      .userLogin(data, {'Content-Type': 'application/json'})
+      .then(res => {
+        if (!!res?.success) {
+          showSuccess(res.message);
+          actions.userDate(res?.data);
+          return;
+        }
+        showError(res.message);
+        setIsLoader(false);
+      })
+      .catch(error => {
+        showError(error.message);
+        setIsLoader(false);
+      });
+  };
+
+  const hideAndShowPassword = () => {
+    setShowPassword(!showPassword);
   };
   return (
     <WrapperContainer
@@ -67,10 +89,22 @@ const Login = ({navigation}) => {
           value={password}
           onChangeText={text => setPassword(text)}
           placeholderTextColor={colors.white}
+          rightImageSource={
+            password.length > 0
+              ? showPassword
+                ? imagePath.showPassword
+                : imagePath.hidePassword
+              : null
+          }
+          secureTextEntry={!showPassword ? true : false}
+          rightIconStyle={{tintColor: colors.lightGreen}}
+          onRightIconPress={hideAndShowPassword}
           mainContaineStyle={{marginBottom: moderateScale(14)}}
         />
         <LoaderButton
           buttonText={en.LOGIN}
+          disabled={isLoader}
+          loaderVisibal={isLoader}
           activeOpacity={0.9}
           onPress={_login}
         />
@@ -79,7 +113,8 @@ const Login = ({navigation}) => {
           <Text style={commonStyle.font12Bold}>{en.FORGETPASSWORD}</Text>
         </View>
         <LoaderButton
-          buttonText={en.SIGNUP}
+          buttonText={en.REGISTER}
+          disabled={isLoader}
           activeOpacity={0.9}
           onPress={() => moveToNextSxreen(navigationStrings.SIGNUPSCREEN)}
         />

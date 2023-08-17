@@ -9,6 +9,7 @@ export default {
     REGISTER: 'Register',
     NAME: 'Name',
     LASTNAME: 'Last Name',
-    EMAIL:'Email'
+    EMAIL: 'Email',
+    REGISTER_SUCCESSFULLY:'Register Successfully' 
     
 }

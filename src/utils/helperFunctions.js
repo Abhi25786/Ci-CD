@@ -8,7 +8,7 @@ export const showError = (message) => {
       floating: true,
       animated: true,
       message,
-      style: { marginTop: moderateScaleVertical(26) },
+      style: { marginTop: moderateScaleVertical(30) },
     });
     // Toast.show(message);
   };
@@ -19,7 +19,7 @@ export const showError = (message) => {
       icon: 'success',
       floating: true,
       animated: true,
-      style: { marginTop: moderateScaleVertical(26) },
+      style: { marginTop: moderateScaleVertical(30) },
       message,
     });
   

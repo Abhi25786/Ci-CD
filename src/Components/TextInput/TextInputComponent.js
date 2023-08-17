@@ -1,5 +1,11 @@
-import React, { memo } from 'react';
-import {View, TextInput, Image, StyleSheet} from 'react-native';
+import React, {memo} from 'react';
+import {
+  View,
+  TextInput,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import colors from '../../Styles/colors';
 import fontFamily from '../../Styles/fontFamily';
 import {moderateScale} from '../../Styles/responsiveSize';
@@ -8,27 +14,40 @@ const TextInputComponent = ({
   leftImageSource,
   rightImageSource,
   onLeftImagePress,
-    onRightImagePress,
+  onRightImagePress,
   mainContaineStyle,
+  secureTextEntry,
   textInputStyle,
+  onLeftIconPress = () => {},
+  onRightIconPress = () => { },
+  leftImgeStyle,
+  rightIconStyle,
   ...textInputProps
 }) => {
   return (
-    <View style={[styles.container,mainContaineStyle,{}]}>
+    <View style={[styles.container, mainContaineStyle, {}]}>
       {leftImageSource && (
-        <Image
-          source={leftImageSource}
-          style={styles.image}
-          onPress={onLeftImagePress}
-        />
+        <TouchableOpacity onPress={onLeftIconPress}>
+          <Image
+            source={leftImageSource}
+            style={[styles.image,leftImgeStyle]}
+            onPress={onLeftImagePress}
+          />
+        </TouchableOpacity>
       )}
-      <TextInput style={[styles.textInput,textInputStyle]} {...textInputProps}   />
+      <TextInput
+        style={[styles.textInput, textInputStyle]}
+        {...textInputProps}
+        secureTextEntry={secureTextEntry}
+      />
       {rightImageSource && (
-        <Image
-          source={rightImageSource}
-          style={styles.image}
-          onPress={onRightImagePress}
-        />
+        <TouchableOpacity onPress={onRightIconPress}>
+          <Image
+            source={rightImageSource}
+            style={[styles.image,rightIconStyle]}
+            onPress={onRightImagePress}
+          />
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -49,9 +68,9 @@ const styles = StyleSheet.create({
     marginHorizontal: moderateScale(8),
   },
   textInput: {
-      color: colors.white,
+    color: colors.white,
     flex: 1,
-      fontFamily:fontFamily.muktaMedium
+    fontFamily: fontFamily.muktaMedium,
   },
 });
 

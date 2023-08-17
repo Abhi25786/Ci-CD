@@ -9,11 +9,12 @@ import MainStack from './MainStack';
 const Route = () => {
   const introState = useSelector(state => state?.intro?.value);
   const userData = useSelector(state => state?.auth?.userData);
+  console.log(userData,'userDatauserDatauserData');
   return (
     <NavigationContainer>
       {introState
         ? IntroStack()
-        : !!userData?.access_token
+        : !!userData?.token
         ? MainStack()
         : AuthStack()}
     </NavigationContainer>
