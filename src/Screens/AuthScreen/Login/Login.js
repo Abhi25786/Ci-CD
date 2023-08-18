@@ -91,12 +91,12 @@ const Login = ({navigation}) => {
           placeholderTextColor={colors.white}
           rightImageSource={
             password.length > 0
-              ? showPassword
+              ? !showPassword
                 ? imagePath.showPassword
                 : imagePath.hidePassword
               : null
           }
-          secureTextEntry={!showPassword ? true : false}
+          secureTextEntry={showPassword ? true : false}
           rightIconStyle={{tintColor: colors.lightGreen}}
           onRightIconPress={hideAndShowPassword}
           mainContaineStyle={{marginBottom: moderateScale(14)}}
