@@ -9,6 +9,7 @@ import React, {memo} from 'react';
 import colors from '../../Styles/colors';
 import {height, moderateScale, textScale} from '../../Styles/responsiveSize';
 import fontFamily from '../../Styles/fontFamily';
+import LinearGradient from 'react-native-linear-gradient';
 
 const LoaderButton = ({
   buttonViewStyle,
@@ -20,14 +21,19 @@ const LoaderButton = ({
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.container, buttonViewStyle]}
+      // style={[styles.container, buttonViewStyle]}
       {...ButtonProps}
       onPress={onPress}>
-      {loaderVisibal ? (
-        <ActivityIndicator size="small" color={colors.white}/>
-      ) : (
-        <Text style={[styles.textStyle, bottonTextStyle]}>{buttonText}</Text>
-      )}
+      <LinearGradient
+        colors={[colors.purple, colors.purple]}
+        start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+        style={[styles.container, buttonViewStyle]}>
+        {loaderVisibal ? (
+          <ActivityIndicator size="small" color={colors.white} />
+        ) : (
+          <Text style={[styles.textStyle, bottonTextStyle]}>{buttonText}</Text>
+        )}
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
@@ -39,8 +45,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: moderateScale(8),
-    borderWidth: moderateScale(1),
-    backgroundColor: colors.lightGreen,
+    // borderWidth: moderateScale(1),
+
     height: height / moderateScale(16),
     paddingHorizontal: moderateScale(12),
   },

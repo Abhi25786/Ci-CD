@@ -21,7 +21,7 @@ const TextInputComponent = ({
   onLeftIconPress = () => {},
   onRightIconPress = () => { },
   leftImgeStyle,
-  rightIconStyle,
+  rightIconStyle, 
   ...textInputProps
 }) => {
   return (

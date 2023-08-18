@@ -2,8 +2,11 @@ export default {
     INTROSCREEN: 'IntroSreen',
     LOGINSCREEN: 'Login',
     SIGNUPSCREEN: 'signUp',
-    HOMESCREEN: 'Home',
-    ACCOUNTSCREEN: 'Account',
-    HOMESTACK:'HomeStack'
+    HOMESCREEN: 'HomeScreen',
+    WRITETODOSCREEN:"WriteTodoScreen",
+    ACCOUNTSCREEN: 'AccountScreen',
+    HOMESTACK: 'HomeStack',
+    WRITETODOSTACK:'WriteTodoStack',
+    ACCOUNTSTACK:'AccountStack'
     
 }

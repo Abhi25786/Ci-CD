@@ -67,7 +67,6 @@ const SignUp = ({navigation}) => {
       .catch(error => {
         showError(error.message);
         setIsLoader(false);
-        console.log(error, 'resresresresres');
       });
   };
 

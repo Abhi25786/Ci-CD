@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ImageRotaionComponent from '../../../Components/AnimatedComponent/ImageRotaionComponent';
@@ -112,12 +118,11 @@ const Login = ({navigation}) => {
           style={{alignItems: 'flex-end', paddingVertical: moderateScale(14)}}>
           <Text style={commonStyle.font12Bold}>{en.FORGETPASSWORD}</Text>
         </View>
-        <LoaderButton
-          buttonText={en.REGISTER}
-          disabled={isLoader}
-          activeOpacity={0.9}
+        <TouchableOpacity
           onPress={() => moveToNextSxreen(navigationStrings.SIGNUPSCREEN)}
-        />
+          style={{alignItems: 'center', paddingVertical: moderateScale(14)}}>
+          <Text style={commonStyle.font12Bold}>{en.REGISTER}</Text>
+        </TouchableOpacity>
       </KeyboardAwareScrollView>
     </WrapperContainer>
   );

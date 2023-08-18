@@ -19,7 +19,6 @@ const App = () => {
       }
     });
     getItem('userData').then(res => {
-      console.log(res, 'resresresres');
       if (res != undefined) {
         userDate(res);
       }

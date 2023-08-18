@@ -21,10 +21,9 @@ export const removeItem = key => {
 
 export async function getHeaders() {
   let userData = await getItem('userData');
-  if (userData) {
-    userData = JSON.parse(userData);
+  if (!!userData) {
     return {
-      authorization: `${userData.token}`,
+      authorization: `bearer ${userData?.token}`,
     };
   }
   return {};
@@ -37,12 +36,12 @@ export async function apiReq(
   headers,
   requestOptions = {},
 ) {
-  console.log(endPoint, 'endPoint');
 
   const source = axios.CancelToken.source();
 
   return new Promise(async (res, rej) => {
     const getTokenHeader = await getHeaders();
+    console.log(getTokenHeader, 'endPoint++++++');
 
     headers = {
       ...getTokenHeader,
@@ -50,7 +49,7 @@ export async function apiReq(
       // cancelToken:source.token
     };
 
-    console.log(headers);
+    console.log(headers,'SCASFDVSDFVSDFVSDFS');
 
     if (method === 'get' || method === 'delete') {
       data = {
@@ -60,7 +59,7 @@ export async function apiReq(
       };
     }
 
-    console.log('header sending--->', headers);
+    console.log('header sending--->', headers,data,endPoint);
     console.log('data sending ---->', data);
     //
     axios[method](endPoint, data, { headers })
