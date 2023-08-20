@@ -5,10 +5,12 @@ import en from '../../../constants/lang/en';
 import commonStyle from '../../../Styles/commonStyle';
 import actions from '../../../redux/actions';
 import {moderateScale} from '../../../Styles/responsiveSize';
+import { removeItem } from '../../../utils/utils';
 
 const Account = () => {
   const onLogOut = () => {
-    actions.userDate({});
+    // actions.userDate({});
+  removeItem('userData')
   };
   return (
     <WrapperContainer>
